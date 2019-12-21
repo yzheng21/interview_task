@@ -1,5 +1,4 @@
-import React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 function KFormCreate(Comp) {
     return class extends Component {
@@ -8,23 +7,20 @@ function KFormCreate(Comp) {
             this.state = {};
         }
 
-        handleChange = (e) => {
-            console.log(e.target.name);
-            console.log(e.target.checked);
-            // const {name, checked} = e.target;
-            // this.setState({[name]: checked});
-        }
-
         // create Input wrapper
-        getFieldDec = (field) => {
+        getFieldDec = (field, index) => {
+            let property;
+            typeof field === "object" ? property = {
+                name: index,
+                value: field.details,
+                checked: field.completed
+            } : property = {
+                name: index,
+                value: ''
+            }
             return InputComp => (
                 <div>
-                    {React.cloneElement(InputComp, {
-                        name: field.id,
-                        value: field.details,
-                        checked: field.completed,
-                        onChange: this.handleChange
-                    })}
+                    {React.cloneElement(InputComp, property)}
                 </div>
             );
         }

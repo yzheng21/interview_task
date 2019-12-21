@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-class KInput extends Component {
+class CheckboxInput extends Component {
+
     render() {
         const {name, onChange, value, type, prefix, checked} = this.props;
         return (
@@ -13,4 +14,4 @@ class KInput extends Component {
     }
 }
 
-export default KInput;
+export default CheckboxInput;

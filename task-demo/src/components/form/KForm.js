@@ -6,9 +6,10 @@ import KFormCreate from './KFormCreate';
 import data from '../../mock/data';
 import { connect } from 'react-redux';
 import { load, update } from '../../store/form.redux';
+import { numOffSet } from '../../libs/constants';
 import DisplayTable from '../DisplayTable';
 
-const mapStateToProps = state => ({initialData: state.form.data});
+const mapStateToProps = state => ({initialData: state.form});
 const mapDispatcherToProps = {load, update};
 
 class KForm extends Component {
@@ -19,7 +20,7 @@ class KForm extends Component {
     }
 
     componentDidMount() {
-        this.setState({data: this.props.load(data).data, offSet: 5});
+        this.setState({data: this.props.load(data).data, offSet: numOffSet});
     }
 
     showMore = () => {
@@ -32,10 +33,10 @@ class KForm extends Component {
 
     handleChange = (e) => {
         if (e.target.type === "checkbox") {
-            let index = e.target.name;
-            let status = e.target.checked;
-            let newData = this.props.initialData;
-            newData[index].completed = status;
+            let newData = {
+                id: e.target.name,
+                completed: e.target.checked
+            };
             this.props.update(newData);
         } else {
             // other input type hanle
@@ -44,7 +45,7 @@ class KForm extends Component {
     
     render() {
         const { getFieldDec } = this.props;
-        
+        // console.log(this.props.initialData);
         return (
             <div className="KForm-container">
                 {
@@ -59,7 +60,7 @@ class KForm extends Component {
                     ) : 'loading...'
                 }
                 <button onClick={this.showMore}>show more</button>
-                {/* <DisplayTable /> */}
+                <DisplayTable data={this.props.initialData}/>
             </div>
         );
     }

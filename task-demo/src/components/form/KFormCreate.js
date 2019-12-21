@@ -11,11 +11,11 @@ function KFormCreate(Comp) {
         getFieldDec = (field, index) => {
             let property;
             typeof field === "object" ? property = {
-                name: index,
+                name: field.id,
                 value: field.details,
                 checked: field.completed
             } : property = {
-                name: index,
+                name: field,
                 value: ''
             }
             return InputComp => (

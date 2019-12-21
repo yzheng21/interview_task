@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-const mapStateToProps = state => ({data: state.form.data});
 
 class DisplayTable extends Component {
 
     render() {
-        const { data } = this.props;
         return (
             <div className="Display-Table">
                 <table>
@@ -19,7 +15,7 @@ class DisplayTable extends Component {
                     </thead>
                     <tbody>
                         {
-                            data ? data.map(item => {
+                            this.props.data ? this.props.data.map(item => {
                                 return (
                                     <tr key={item.id}>
                                         <td>{item.id}</td>
@@ -36,4 +32,4 @@ class DisplayTable extends Component {
     }
 }
 
-export default connect(mapStateToProps)(DisplayTable);
+export default DisplayTable;

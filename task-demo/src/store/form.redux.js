@@ -1,15 +1,17 @@
 import {LOAD_DATA, UPDATE_DATA} from '../action';
 
-export const formReducer = (state={}, action) => {
+export const formReducer = (state=[], action) => {
     switch (action.type) {
         case LOAD_DATA:
-            return {
-                data: action.data
-            };
+            return action.data;
         case UPDATE_DATA:
-            return {
-                data: action.newData
-            };
+            state.forEach(item => {
+                if (item.id == action.newData.id) {
+                    item.completed = action.newData.completed;
+                }
+            });
+            console.log(state);
+            return state;
         default:
             return state;
     }

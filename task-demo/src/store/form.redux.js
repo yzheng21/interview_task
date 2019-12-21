@@ -10,8 +10,7 @@ export const formReducer = (state=[], action) => {
                     item.completed = action.newData.completed;
                 }
             });
-            console.log(state);
-            return state;
+            return [...state];
         default:
             return state;
     }

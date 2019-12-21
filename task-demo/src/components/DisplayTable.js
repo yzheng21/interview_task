@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => ({data: state.form});
 
 class DisplayTable extends Component {
 
@@ -32,4 +35,4 @@ class DisplayTable extends Component {
     }
 }
 
-export default DisplayTable;
+export default connect(mapStateToProps)(DisplayTable);

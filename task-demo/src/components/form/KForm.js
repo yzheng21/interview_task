@@ -65,7 +65,7 @@ class KForm extends Component {
                 </div>
                 
                 <div className="display-table-container">
-                    <DisplayTable data={this.props.initialData} />
+                    <DisplayTable />
                 </div>   
             </div>
             

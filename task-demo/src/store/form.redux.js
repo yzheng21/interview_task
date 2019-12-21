@@ -6,7 +6,7 @@ export const formReducer = (state=[], action) => {
             return action.data;
         case UPDATE_DATA:
             state.forEach(item => {
-                if (item.id == action.newData.id) {
+                if (item.id === Number(action.newData.id)) {
                     item.completed = action.newData.completed;
                 }
             });

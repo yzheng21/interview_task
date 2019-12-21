@@ -24,8 +24,8 @@ class KForm extends Component {
     }
 
     showMore = () => {
-        if (this.state.offSet + 3 <= this.state.data.length) {
-            this.setState(state => ({ offSet: state.offSet + 3 }));
+        if (this.state.offSet + 5 <= this.state.data.length) {
+            this.setState(state => ({ offSet: state.offSet + 5 }));
         } else {
             this.setState({ offSet: this.state.data.length })
         }
@@ -38,6 +38,7 @@ class KForm extends Component {
                 completed: e.target.checked
             };
             this.props.update(newData);
+            this.setState({ offSet: this.state.offSet })
         } else {
             // other input type hanle
         }
@@ -47,21 +48,27 @@ class KForm extends Component {
         const { getFieldDec } = this.props;
         // console.log(this.props.initialData);
         return (
-            <div className="KForm-container">
-                {
-                    this.state.data ? this.state.data
-                    .slice(0, this.state.offSet)
-                    .map((item, i) => 
-                        <FormItem key={i}>
-                            {getFieldDec(item, i)(
-                            <CheckboxInput type="checkbox" prefix={<Icon type={item.id}></Icon>} onChange={this.handleChange} />
-                            )}
-                        </FormItem>
-                    ) : 'loading...'
-                }
-                <button onClick={this.showMore}>show more</button>
-                <DisplayTable data={this.props.initialData}/>
+            <div className="container">
+                <div className="KForm-container">
+                    {
+                        this.state.data ? this.state.data
+                        .slice(0, this.state.offSet)
+                        .map((item, i) => 
+                            <FormItem key={i}>
+                                {getFieldDec(item, i)(
+                                <CheckboxInput type="checkbox" prefix={<Icon type={item.id}></Icon>} onChange={this.handleChange} />
+                                )}
+                            </FormItem>
+                        ) : 'loading...'
+                    }
+                    <button onClick={this.showMore}>show more</button>
+                </div>
+                
+                <div className="display-table-container">
+                    <DisplayTable data={this.props.initialData} />
+                </div>   
             </div>
+            
         );
     }
 }

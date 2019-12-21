@@ -14,6 +14,22 @@ button {
     outline: none;
 }
 
+.KForm-container {
+    float: left;
+}
+
+.display-table-container {
+    margin-left: 250px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+}
+
 .icon-item {
     color: rgba(0,0,0,.25);
     margin-right: 20px;
